@@ -1,0 +1,39 @@
+<div class="container">
+  <div class="w-75 body m-auto">
+    <h3 [ngStyle]="{ color: 'var(--green-400)' }">Orders Address</h3>
+
+    <table class="table text-center" *ngIf="addressData != null; else msg">
+      <thead class="thead-light">
+        <tr>
+          <th>Index</th>
+          <th>Name</th>
+          <th>Details</th>
+          <th>Phone</th>
+          <th>City</th>
+          <th>Remove</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let address of addressData; let i = index">
+          <td>{{ i +1 }}</td>
+          <td>{{ address.name }}</td>
+          <td>{{ address.details }}</td>
+          <td>{{ address.phone }}</td>
+          <td>{{ address.city }}</td>
+          <td><button class="btn btn-outline-danger" (click)="removeItem(address._id)">Remove</button></td>
+        </tr>
+      </tbody>
+    </table>
+
+    <button pButton class="d-block me-auto rounded-2" routerLink="/setAddress">Add Address</button>
+
+
+    <ng-template #msg>
+      <div class="alert alert-danger p-2">
+        Address Is empty....
+      </div>
+    </ng-template>
+
+
+  </div>
+</div>

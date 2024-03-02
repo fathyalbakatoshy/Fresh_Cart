@@ -1,0 +1,41 @@
+<div class="container py-4">
+  <div class="row gy-4" *ngIf="!isLoading; else loading">
+    <div class="col-lg-3 col-md-4 col-sm-6" *ngFor="let product of products">
+      <div class="p-2 card surface-border surface-card border-round">
+        <div class="flex flex-wrap align-items-center justify-content-between gap-2">
+          <div class="d-flex justify-content-between align-items-center">
+            <span class="d-flex align-items-center gap-2" [ngStyle]="{color: 'var(--green-500)'}">
+              <i class="pi pi-tag"></i>
+              <span class="fw-semibold">{{ product.category.slug }}</span>
+            </span>
+            <span *ngIf="!withListData.includes(product._id)" class="icon-heart" (click)="addToWishList(product._id)">
+              <i class="pi pi-heart" style="font-size: 1.5rem"></i>
+            </span>
+            <span *ngIf="withListData.includes(product._id)" class="icon-heart" (click)="removeForWishList(product._id)">
+              <i class="pi pi-heart-fill" style="font-size: 1.5rem"></i>
+            </span>
+
+          </div>
+          <div [routerLink]="['/details', product._id]">
+          <div class="d-flex flex-column align-items-center gap-3 py-3">
+            <img class="shadow border-rounded w-75" [src]="product.imageCover" [alt]="product.title" />
+            <div class="text-2xl fw-bold">{{ product.title.split(" ").splice(0,2).join(" ") }}</div>
+            <p-rating [ngModel]="product.ratingsAverage" [readonly]="true" [cancel]="false"></p-rating>
+          </div>
+      </div>
+          </div>
+        <div class="d-flex align-items-center justify-content-between">
+            <span class="text-2xl fw-semibold">{{product.price | currency: 'EGP' }}</span>
+            <button (click)="addToCart(product._id)" pButton icon="pi pi-shopping-cart" [ngStyle]="{width: '40px', height: '40px'}" class="rounded-circle"></button>
+        </div>
+      </div>
+    </div>
+  </div>
+  <p-toast></p-toast>
+</div>
+
+<ng-template #loading>
+  <div class=" position-fixed top-0 end-0 start-0 bottom-0 bg-body z-3 d-flex justify-content-center align-items-center">
+    <p-progressSpinner ariaLabel="loading"></p-progressSpinner>
+  </div>
+</ng-template>

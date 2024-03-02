@@ -1,0 +1,60 @@
+<div class="container py-5" >
+  <form [formGroup]="ordersForm" (ngSubmit)="orders(ordersForm)">
+    <div class="body w-75 m-auto">
+      <h1 [ngStyle]="{color:'var(--green-500)'}">Address :</h1>
+
+
+      <div class="mb-3">
+        <div class="p-inputgroup">
+          <span class="p-inputgroup-addon">
+              <i class="pi pi-map-marker"></i>
+          </span>
+          <input class="d-block" formControlName="details" pInputText placeholder="Address Details" />
+        </div>
+        <div *ngIf="ordersForm.get('details')?.errors && ordersForm.get('details')?.touched">
+          <small *ngIf="ordersForm.get('details')?.getError('required')" class="p-error"> Address Details Is Requird </small>
+          <small *ngIf="ordersForm.get('details')?.getError('minlength')" class="p-error" > Min length should be 4 </small>
+          <small *ngIf="ordersForm.get('details')?.getError('maxlength')" class="p-error" > Max length should be 25 </small>
+        </div>
+      </div>
+
+
+      <div class="mb-3">
+        <div class="p-inputgroup">
+          <span class="p-inputgroup-addon">
+            <i class="pi pi-phone"></i>
+          </span>
+          <input formControlName="phone" pInputText type="tel" placeholder="Phone" />
+        </div>
+        <div *ngIf="ordersForm.get('phone')?.errors && ordersForm.get('phone')?.touched">
+          <small class="m-0 p-error" *ngIf="ordersForm.get('phone')?.getError('required')" > Phone Is Requird </small>
+          <small class="m-0 p-error" *ngIf="ordersForm.get('phone')?.getError('pattern')"> Phone Not Valid </small>
+        </div>
+      </div>
+
+
+      <div class="mb-3">
+        <div class="p-inputgroup">
+          <span class="p-inputgroup-addon">
+              <i class="pi pi-globe"></i>
+          </span>
+          <input class="d-block" formControlName="city" pInputText placeholder="City" />
+        </div>
+        <div *ngIf="ordersForm.get('city')?.errors && ordersForm.get('city')?.touched">
+          <small *ngIf="ordersForm.get('city')?.getError('required')" class="p-error"> City Is Requird </small>
+          <small *ngIf="ordersForm.get('city')?.getError('minlength')" class="p-error" > Min length should be 4 </small>
+          <small *ngIf="ordersForm.get('city')?.getError('maxlength')" class="p-error" > Max length should be 25 </small>
+        </div>
+      </div>
+
+
+      <button pButton pRipple  class="d-block ms-auto rounded-3 px-4 py-2">
+        <i class="pi pi-spin pi-spinner" *ngIf="isLoading"></i>
+        <span *ngIf="!isLoading">Order</span>
+      </button>
+
+
+
+    </div>
+  </form>
+</div>

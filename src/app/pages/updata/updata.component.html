@@ -1,0 +1,58 @@
+<div class="container py-5" >
+  <form [formGroup]="updataProfileForm" (ngSubmit)="upDataProfile(updataProfileForm)">
+    <div class="body w-75 m-auto">
+      <h1 [ngStyle]="{color:'var(--green-400)'}">Updata Profile :</h1>
+      <div class="mb-3">
+        <div class="p-inputgroup">
+          <span class="p-inputgroup-addon">
+              <i class="pi pi-user"></i>
+          </span>
+          <input class="d-block" formControlName="name" pInputText placeholder="Username" />
+        </div>
+        <div *ngIf="updataProfileForm.get('name')?.errors && updataProfileForm.get('name')?.touched">
+          <small *ngIf="updataProfileForm.get('name')?.getError('required')" class="p-error"> Username requird </small>
+          <small *ngIf="updataProfileForm.get('name')?.getError('minlength')" class="p-error" > Min length should be 4 </small>
+          <small *ngIf="updataProfileForm.get('name')?.getError('maxlength')" class="p-error" > Max length should be 18 </small>
+        </div>
+      </div>
+
+      <div class="mb-3">
+        <div class="p-inputgroup">
+          <span class="p-inputgroup-addon">
+              <i class="pi pi-at"></i>
+          </span>
+          <input formControlName="email" type="email" class="ng-valid" pInputText placeholder="Mail" />
+        </div>
+      <div *ngIf="updataProfileForm.get('email')?.errors && updataProfileForm.get('email')?.touched">
+        <small *ngIf="updataProfileForm.get('email')?.getError('required')" class="m-0 p-error" >Email Requird </small>
+        <small *ngIf="updataProfileForm.get('email')?.getError('pattern')" class="m-0 p-error"> Email Not Valid </small>
+      </div>
+      </div>
+
+      <div class="mb-3">
+        <div class="p-inputgroup">
+          <span class="p-inputgroup-addon">
+            <i class="pi pi-phone"></i>
+          </span>
+          <input formControlName="phone" pInputText type="tel" placeholder="Phone" />
+        </div>
+        <div *ngIf="updataProfileForm.get('phone')?.errors && updataProfileForm.get('phone')?.touched">
+          <small class="m-0 p-error" *ngIf="updataProfileForm.get('phone')?.getError('required')" > Phone Requird </small>
+          <small class="m-0 p-error" *ngIf="updataProfileForm.get('phone')?.getError('pattern')"> Phone Not Valid </small>
+        </div>
+      </div>
+
+
+        <p-messages [(value)]="mesError" [enableService]="false"></p-messages>
+
+
+      <button pButton pRipple  class="d-block ms-auto rounded-3 px-4 py-2">
+        <i class="pi pi-spin pi-spinner" *ngIf="isLoading"></i>
+        <span *ngIf="!isLoading">Up Data</span>
+      </button>
+
+
+
+    </div>
+  </form>
+</div>

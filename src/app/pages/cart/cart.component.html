@@ -1,0 +1,89 @@
+<div class="container py-4">
+  <div class="body w-75 m-auto" >
+    <div *ngIf="!isLoading; else skeleton">
+      <div *ngIf="products; else msg">
+        <h1>Shop Cart</h1>
+        <hr>
+        <div class="row py-2 my-2 rounded-2" *ngFor="let product of products">
+          <div class="col-md-2 mb-sm-3">
+            <img [src]="product.product.imageCover" class="w-100 rounded-2 shadow" [alt]="product.title">
+          </div>
+          <div class="col-md-10 d-flex justify-content-between align-items-center">
+            <div class="d-flex flex-column gap-1">
+              <h3 class="h4 fw-normal">{{product.product.title}}</h3>
+              <h3 class="h5 fw-normal" [ngStyle]="{color: 'var(--green-500)'}">Price :{{product.price | currency: "EGP"}}</h3>
+              <div class="d-flex gap-1 align-items-center" (click)="removeItem(product.product._id)">
+                <i class="pi pi-trash" [ngStyle]="{color: 'var(--green-500)'}"></i>
+                <span class="remove">Remove</span>
+              </div>
+            </div>
+            <div class="count d-flex gap-2 align-items-center">
+              <button pButton class=" d-flex justify-content-center align-items-center p-1" (click)="changeCount(product.count + 1, product.product._id)">+</button>
+              <span>{{product.count}}</span>
+              <button pButton class=" d-flex justify-content-center align-items-center p-1" (click)="changeCount(product.count - 1, product.product._id)">-</button>
+            </div>
+          </div>
+        </div>
+        <button class="removeAll d-block ms-auto rounded-1" (click)="removeAll()">
+          <i class="pi pi-trash me-1" [ngStyle]="{color: 'var(--green-500)'}"></i>
+          <span>Remove All</span>
+        </button>
+        <hr>
+        <div class="d-flex justify-content-between align-items-center">
+          <h3 class="h5 fw-normal" [ngStyle]="{color: 'var(--green-500)'}">Total Price : {{totalPrice | currency: "EGP"}}</h3>
+          <button pButton pRipple  class=" d-block  rounded-3 px-4 py-2" [routerLink]="['/orders', productId]"  >
+            <i class="pi pi-spin pi-spinner" *ngIf="isLoading"></i>
+            <span *ngIf="!isLoading">Payment</span>
+          </button></div>
+       </div>
+    </div>
+    </div>
+    <p-toast></p-toast>
+  <ng-template #msg>
+    <div class="alert alert-danger text-center h1">
+      Your Cart Is Empty ...
+    </div>
+  </ng-template>
+  <ng-template #skeleton>
+    <div class="border-round border-1 surface-border p-4 surface-card pt-5">
+      <ul class="m-0 p-0 list-none">
+        <li class="mb-3">
+            <div class="d-flex align-items-center">
+                <p-skeleton shape="circle" size="4rem" styleClass="me-2"></p-skeleton>
+                <div style="flex: 1">
+                    <p-skeleton width="100%" styleClass="mb-2"></p-skeleton>
+                    <p-skeleton width="75%"></p-skeleton>
+                </div>
+            </div>
+        </li>
+        <li class="mb-3">
+            <div class="d-flex align-items-center">
+                <p-skeleton shape="circle" size="4rem" styleClass="me-2"></p-skeleton>
+                <div style="flex: 1">
+                    <p-skeleton width="100%" styleClass="mb-2"></p-skeleton>
+                    <p-skeleton width="75%"></p-skeleton>
+                </div>
+            </div>
+        </li>
+        <li class="mb-3">
+            <div class="d-flex align-items-center">
+                <p-skeleton shape="circle" size="4rem" styleClass="me-2"></p-skeleton>
+                <div style="flex: 1">
+                    <p-skeleton width="100%" styleClass="mb-2"></p-skeleton>
+                    <p-skeleton width="75%"></p-skeleton>
+                </div>
+            </div>
+        </li>
+        <li>
+            <div class="d-flex align-items-center">
+                <p-skeleton shape="circle" size="4rem" styleClass="me-2"></p-skeleton>
+                <div style="flex: 1">
+                    <p-skeleton width="100%" styleClass="mb-2"></p-skeleton>
+                    <p-skeleton width="75%"></p-skeleton>
+                </div>
+            </div>
+        </li>
+    </ul>
+    </div>
+  </ng-template>
+</div>

@@ -1,0 +1,25 @@
+<div class="container py-5">
+  <div class="row gy-4" *ngIf="!isLoading; else loading">
+    <div class="col-lg-3 col-md-4 col-sm-6" *ngFor="let category of categories">
+      <div class="border rounded-2 text-center py-5 px-3">
+            <div class="mb-3">
+                <img [src]="category.image" [alt]="category.name" class="w-75 shadow" height="200" />
+            </div>
+            <div>
+                <h4 class="mb-1">{{category.name}}</h4>
+                <h6 class="mt-0 mb-3 fw-normal" [ngStyle]="{color: 'var(--green-500)'}"> {{ category.slug }} </h6>
+                <div class="mt-5 d-flex align-items-center justify-content-center">
+                <button pButton icon="pi pi-search" [ngStyle]="{width: '40px', height: '40px'}" class=" rounded-circle"></button>
+            </div>
+            </div>
+        </div>
+    </div>
+  </div>
+</div>
+
+
+<ng-template #loading>
+  <div class=" loading bg-body z-3 d-flex justify-content-center align-items-center">
+    <p-progressSpinner ariaLabel="loading"></p-progressSpinner>
+  </div>
+</ng-template>

@@ -1,0 +1,33 @@
+<div class="container">
+  <div class="body mx-2" *ngIf="!isLoading; else loading">
+    <div class="row gy-5">
+      <div class="col-lg-3 col-md-6">
+        <img class="w-100 shadow mx-auto rounded-3" [src]="details.imageCover" [alt]="details.title" />
+      </div>
+      <div class="col-lg-9 col-md-6 d-flex justify-content-between">
+        <div class="d-flex flex-column justify-content-center sm:align-items-start gap-3">
+          <div class="h5 fw-bold pe-3">{{ details.title }}</div>
+          <div class="text-black-50 small font-bold text-900 pe-3">{{ details.description }}</div>
+          <p-rating [(ngModel)]="details.ratingsAverage" [readonly]="true" [cancel]="false"></p-rating>
+          <div class="d-flex align-items-center gap-3" [ngStyle]="{color: 'var(--green-500)'}">
+              <span class="d-flex align-items-center gap-2">
+                  <i class="pi pi-tag"></i>
+                  <span class="font-semibold">{{ details.category?.slug }}</span>
+              </span>
+          </div>
+      </div>
+      <div class="d-flex flex-column justify-content-center align-items-center gap-3" >
+          <span class="text-2xl fw-semibold">{{ details.price | currency: 'EGP' }}</span>
+          <button pButton (click)="addToCart(details._id)" icon="pi pi-shopping-cart" class="md:align-self-end mb-2 rounded-circle" [ngStyle]="{width: '50px', height: '50px'}"></button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<p-toast></p-toast>
+
+<ng-template #loading>
+  <div class=" loading bg-body z-3 d-flex justify-content-center align-items-center">
+    <p-progressSpinner ariaLabel="loading"></p-progressSpinner>
+  </div>
+</ng-template>

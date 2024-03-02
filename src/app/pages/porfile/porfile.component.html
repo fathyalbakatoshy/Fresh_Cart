@@ -1,0 +1,59 @@
+<div class="container py-5">
+  <div class="w-75 body m-auto">
+    <div *ngIf="!isLoading; else skeleton">
+      <h1 [ngStyle]="{ color: 'var(--green-400)' }">My Profile</h1>
+      <hr />
+      <table class="table table-striped">
+        <tr>
+          <th scope="row">Name</th>
+          <td>:</td>
+          <td>{{ userData.name }}</td>
+        </tr>
+        <tr>
+          <th scope="row">Email</th>
+          <td>:</td>
+          <td>{{ userData.email }}</td>
+        </tr>
+        <tr>
+          <th scope="row">Phone</th>
+          <td>:</td>
+          <td>{{ userData.phone }}</td>
+        </tr>
+        <tr>
+          <th scope="row">Password</th>
+          <td>:</td>
+          <td>******</td>
+          <td>
+            <button class="btn btn-outline-secondary"routerLink="/changePassword">change</button>
+          </td>
+        </tr>
+      </table>
+
+
+      <button pButton class="rounded-2" routerLink="/updata">
+        Updata Profile
+      </button>
+    </div>
+    <ng-template #skeleton>
+      <div class="border-round border-1 surface-border p-4 surface-card pt-5">
+        <ul class="m-0 p-0 list-none">
+          <li class="mb-3">
+              <div class="d-flex align-items-center">
+                  <p-skeleton shape="circle" size="4rem" styleClass="me-2"></p-skeleton>
+                  <div style="flex: 1">
+                      <p-skeleton width="100%" styleClass="mb-2"></p-skeleton>
+                      <p-skeleton width="75%" styleClass="mb-2"></p-skeleton>
+                      <p-skeleton width="100%" styleClass="mb-2"></p-skeleton>
+                      <p-skeleton width="75%" styleClass="mb-2"></p-skeleton>
+                      <p-skeleton width="100%" styleClass="mb-2"></p-skeleton>
+                      <p-skeleton width="75%"></p-skeleton>
+                  </div>
+              </div>
+          </li>
+
+
+      </ul>
+      </div>
+    </ng-template>
+  </div>
+</div>

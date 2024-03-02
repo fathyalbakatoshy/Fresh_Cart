@@ -1,0 +1,78 @@
+<nav class="navbar navbar-expand-lg bg-body-tertiary">
+  <div class="container">
+    <a class="navbar-brand" routerLink="/home">
+      <img src="assets/img/logo.svg" alt="">
+    </a>
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav me-auto mb-2 mb-lg-0" *ngIf="isLoggedIn">
+        <li class="nav-item">
+          <a class="nav-link" routerLink="/home" routerLinkActive="active">Home</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" routerLink="/cart" routerLinkActive="active">Cart</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" routerLink="/products" routerLinkActive="active">Products</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" routerLink="/categories" routerLinkActive="active">Categories</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" routerLink="/brands" routerLinkActive="active">Brands</a>
+        </li>
+      </ul>
+    </div>
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ms-auto mb-2 mb-lg-0 gap-1">
+        <li class="nav-item">
+          <a class="nav-link ">
+            <i class="pi px-2 pi-facebook"></i>
+            <i class="pi px-2 pi-youtube"></i>
+            <i class="pi px-2 pi-linkedin"></i>
+            <i class="pi px-2 pi-twitter"></i>
+          </a>
+        </li>
+        <ng-template [ngIf]="!isLoggedIn">
+          <li class="nav-item">
+            <a class="nav-link" routerLink="/login" routerLinkActive="active">Login</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" routerLink="/register" routerLinkActive="active">Register</a>
+          </li>
+        </ng-template>
+
+
+        <ng-template [ngIf]="isLoggedIn"  class="signout nav-item">
+          <li routerLink="/wishlist" routerLinkActive="active">
+            <a class="nav-link" ><i class="pi pi-heart " style="font-size: 1.5rem" pBadge [value]="wishListNum"></i></a>
+          </li>
+          <li routerLink="/cart" routerLinkActive="active">
+            <a class="nav-link" ><i class="pi pi-shopping-cart " style="font-size: 1.5rem" pBadge [value]="cartNum"></i></a>
+          </li>
+          <li  class="nav-item">
+            <div class="dropdown">
+              <a class="nav-link"  data-bs-toggle="dropdown" aria-expanded="false">Setting</a>
+              <ul class="dropdown-menu">
+                <li><a class="dropdown-item" routerLink="/profile">Profile</a></li>
+                <li><a class="dropdown-item" routerLink="/changePassword">Change Password</a></li>
+                <li><a class="dropdown-item" routerLink="/address">Orders Address</a></li>
+                <li (click)="signOut()"><a class="dropdown-item">Logout</a></li>
+              </ul>
+            </div>
+          </li>
+
+
+        </ng-template>
+
+
+
+      </ul>
+    </div>
+  </div>
+</nav>
+
+
+

@@ -1,0 +1,14 @@
+.active {
+  color: var(--green-500) !important;
+}
+
+
+li {
+  cursor: pointer;
+}
+
+.dropBtn {
+  border: none;
+  background-color: white;
+}
+

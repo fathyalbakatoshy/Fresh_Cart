@@ -1,0 +1,22 @@
+.body {
+  background-color: rgb(240, 240, 240);
+  padding: 20px;
+  border-radius: 10px;
+}
+
+
+button {
+  font-size: 12px !important;
+  padding: 0px 5px !important;
+
+}
+
+
+.container {
+  min-height: calc(100vh - 60px);
+}
+
+
+ul {
+  list-style: none;
+}
