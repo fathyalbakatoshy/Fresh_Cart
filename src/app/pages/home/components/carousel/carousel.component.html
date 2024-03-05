@@ -1,18 +1,19 @@
 <div class="container">
-  <p-carousel [value]="products" [numVisible]="3" [numScroll]="3" [circular]="false" [responsiveOptions]="responsiveOptions">
-    <ng-template let-product pTemplate="item">
-        <div class="border-1 surface-border border-round m-2 text-center py-5 px-3">
-            <div class="mb-3">
-                <img src="https://primefaces.org/cdn/primeng/images/demo/product/{{ product.image }}" [alt]="product.name" class="w-6 shadow-2" />
-            </div>
-            <div>
-                <h4 class="mb-1">{{ product.name }}</h4>
-                <h6 class="mt-0 mb-3">{{ '$' + product.price }}</h6>
-                <div class="mt-5 flex align-items-center justify-content-center gap-2">
-            </div>
-            </div>
-        </div>
+  <owl-carousel-o [options]="customOptions">
+
+
+    <ng-template carouselSlide>
+      <img [src]="'../../../../../assets/img/main-slider-1.jpeg'">
     </ng-template>
-</p-carousel>
+    <ng-template carouselSlide>
+      <img [src]="'../../../../../assets/img/main-slider-2.jpeg'">
+    </ng-template>
+    <ng-template carouselSlide>
+      <img [src]="'../../../../../assets/img/main-slider-3.jpeg'">
+    </ng-template>
+
+
+
+</owl-carousel-o>
 
 </div>
