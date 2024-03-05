@@ -1,0 +1,25 @@
+<div class="container mt-4">
+  <div class="row justify-content-center">
+    <div class="col-lg-8">
+      <h2 class="mb-4 text-center">Orders List</h2>
+      <div *ngFor="let order of orders" class="card mb-4 shadow">
+        <div class="card-header" style="background-color: rgb(1, 152, 1); color: #fff;">
+          <h5 class="mb-0">Order ID: {{ order.id }}</h5>
+        </div>
+        <div class="card-body">
+          <div class="row">
+            <div class="col-md-6">
+              <p class="card-text"><strong>Created At:</strong> {{ order.createdAt | date: 'medium' }}</p>
+              <p class="card-text"><strong>Shipping Address:</strong> {{ order.shippingAddress.city }}</p>
+            </div>
+            <div class="col-md-6">
+              <p class="card-text"><strong>Total Order Price:</strong> {{ order.totalOrderPrice | currency: 'EGP' }}</p>
+              <p class="card-text"><strong>Is Delivered:</strong> <span [class]="order.isDelivered ? 'text-success' : 'text-danger'">{{ order.isDelivered ? 'Yes' : 'No' }}</span></p>
+              <p class="card-text"><strong>Is Paid:</strong> <span [class]="order.isPaid ? 'text-success' : 'text-danger'">{{ order.isPaid ? 'Yes' : 'No' }}</span></p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

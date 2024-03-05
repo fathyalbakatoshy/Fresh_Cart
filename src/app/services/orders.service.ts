@@ -13,4 +13,8 @@ export class OrdersService {
   makeOrder(data :any, id: any) :Observable<any> {
   return this._httpClient.post(`https://ecommerce.routemisr.com/api/v1/orders/checkout-session/${id}?url=http://localhost:4200`, {shippingAddress : data})
   }
+
+  getAllOrders(id: string) :Observable<any> {
+    return this._httpClient.get(`https://ecommerce.routemisr.com/api/v1/orders/user/${id}`)
+  }
 }

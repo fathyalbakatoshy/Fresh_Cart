@@ -43,7 +43,7 @@ export class WishListComponent implements OnInit {
             this._wishlistService.numWishList.next(data.count)
           } else {
             this.products = null
-            this._wishlistService.numWishList.next(0)
+            this._wishlistService.numWishList.next("0")
           }
         } else {
         }
